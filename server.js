@@ -9,6 +9,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+console.log("Origin = ", process.env.CORS_ORIGIN);
+
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
@@ -73,4 +75,4 @@ app.delete("/clear-cookie", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`c7 = Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`c8 = Server running on port ${PORT}`));
