@@ -64,6 +64,7 @@ app.delete("/clear-cookie", (req, res) => {
     .clearCookie("god", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      expires: new Date(0),
     })
     .json({
       message: "Cookie cleared successfully",
