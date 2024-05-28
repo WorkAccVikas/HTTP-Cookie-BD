@@ -40,7 +40,7 @@ app.post("/set-cookie", (req, res) => {
     .cookie("god", "SACHIN TENDULKAR", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      // sameSite: "none",
+      sameSite: "None", // Set this to 'None' if using cross-site cookies
       maxAge: 3600000, // 1 hour
     })
     .json({
@@ -64,7 +64,8 @@ app.delete("/clear-cookie", (req, res) => {
     .clearCookie("god", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      expires: new Date(0),
+      sameSite: "None", // Ensure this matches your set-cookie settings
+      // expires: new Date(0),
     })
     .json({
       message: "Cookie cleared successfully",
@@ -72,4 +73,4 @@ app.delete("/clear-cookie", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`c5 = Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`c7 = Server running on port ${PORT}`));
