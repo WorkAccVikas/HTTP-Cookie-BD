@@ -45,6 +45,7 @@ app.post("/set-cookie", (req, res) => {
       sameSite: "None", // Set this to 'None' if using cross-site cookies
       maxAge: 3600000, // 1 hour
     })
+    .cookie("danav", "Ravan")
     .json({
       message: "Cookie set successfully",
     });
@@ -54,8 +55,9 @@ app.post("/set-cookie", (req, res) => {
 app.get("/read-cookie", (req, res) => {
   console.log("Cookie Data = ", req.cookies);
   const cookieValue = req.cookies["god"];
+  const cookieValue1 = req.cookies["danav"];
   return res.status(200).json({
-    message: `Cookie value is ${cookieValue}`,
+    message: `Cookie value is ${cookieValue}, ${cookieValue1}`,
   });
 });
 
@@ -69,10 +71,11 @@ app.delete("/clear-cookie", (req, res) => {
       sameSite: "None", // Ensure this matches your set-cookie settings
       // expires: new Date(0),
     })
+    .clearCookie("danav")
     .json({
       message: "Cookie cleared successfully",
     });
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`c8 = Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`c9 = Server running on port ${PORT}`));
