@@ -15,7 +15,15 @@ app.use(
     credentials: true,
   })
 );
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", process.env.CORS_ORIGIN);
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "content-type");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
+app.use(cookieParser());
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -32,6 +40,7 @@ app.post("/set-cookie", (req, res) => {
     .cookie("god", "SACHIN TENDULKAR", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      sameSite: none,
       maxAge: 3600000, // 1 hour
     })
     .json({
