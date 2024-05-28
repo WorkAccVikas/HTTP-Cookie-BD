@@ -40,7 +40,7 @@ app.post("/set-cookie", (req, res) => {
     .cookie("god", "SACHIN TENDULKAR", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: none,
+      sameSite: "none",
       maxAge: 3600000, // 1 hour
     })
     .json({
