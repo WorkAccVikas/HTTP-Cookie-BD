@@ -79,22 +79,22 @@ app.get("/read-cookie", (req, res) => {
 app.delete("/clear-cookie", (req, res) => {
   return res
     .status(200)
-    .clearCookie("HT1", "HTTP cookie with lax", {
+    .clearCookie("HT1", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "None", // Set this to 'None' if using cross-site cookies
     })
-    .clearCookie("HC2", "HTTP cookie with lax", {
+    .clearCookie("HC2", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "Lax", // Set this to 'Lax' if using cross-site cookies
     })
-    .clearCookie("HC3", "HTTP cookie with strict", {
+    .clearCookie("HC3", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "Strict", // Set this to 'strict' if using cross-site cookies
     })
-    .clearCookie("C1", "Cookie without any", {
+    .clearCookie("C1", {
       secure: process.env.NODE_ENV === "production",
     })
     .json({
@@ -103,4 +103,4 @@ app.delete("/clear-cookie", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`c11 = Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`c13 = Server running on port ${PORT}`));
