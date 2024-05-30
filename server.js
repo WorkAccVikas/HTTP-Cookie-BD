@@ -102,5 +102,10 @@ app.delete("/clear-cookie", (req, res) => {
     });
 });
 
+app.get("/all", (req, res) => {
+  const cookieData = req.cookies;
+  return res.status(200).json({ message: JSON.stringify(cookieData) });
+});
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`c13 = Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`c15 = Server running on port ${PORT}`));
