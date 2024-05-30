@@ -83,19 +83,16 @@ app.delete("/clear-cookie", (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "None", // Set this to 'None' if using cross-site cookies
-      maxAge: 3600000, // 1 hour
     })
     .clearCookie("HC2", "HTTP cookie with lax", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "Lax", // Set this to 'Lax' if using cross-site cookies
-      maxAge: 3600000, // 1 hour
     })
     .clearCookie("HC3", "HTTP cookie with strict", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "Strict", // Set this to 'strict' if using cross-site cookies
-      maxAge: 3600000, // 1 hour
     })
     .clearCookie("C1", "Cookie without any", {
       secure: process.env.NODE_ENV === "production",
