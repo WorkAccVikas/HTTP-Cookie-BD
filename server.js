@@ -39,13 +39,27 @@ mongoose
 app.post("/set-cookie", (req, res) => {
   return res
     .status(200)
-    .cookie("god", "SACHIN TENDULKAR", {
+    .cookie("HT1", "HTTP cookie with lax", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "None", // Set this to 'None' if using cross-site cookies
       maxAge: 3600000, // 1 hour
     })
-    .cookie("danav", "Ravan")
+    .cookie("HC2", "HTTP cookie with lax", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Lax", // Set this to 'Lax' if using cross-site cookies
+      maxAge: 3600000, // 1 hour
+    })
+    .cookie("HC3", "HTTP cookie with strict", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict", // Set this to 'Lax' if using cross-site cookies
+      maxAge: 3600000, // 1 hour
+    })
+    .cookie("C1", "Cookie without any", {
+      secure: process.env.NODE_ENV === "production",
+    })
     .json({
       message: "Cookie set successfully",
     });
@@ -54,8 +68,8 @@ app.post("/set-cookie", (req, res) => {
 // Route to read a cookie
 app.get("/read-cookie", (req, res) => {
   console.log("Cookie Data = ", req.cookies);
-  const cookieValue = req.cookies["god"];
-  const cookieValue1 = req.cookies["danav"];
+  const cookieValue = req.cookies["HT1"];
+  const cookieValue1 = req.cookies["C1"];
   return res.status(200).json({
     message: `Cookie value is ${cookieValue}, ${cookieValue1}`,
   });
@@ -71,7 +85,9 @@ app.delete("/clear-cookie", (req, res) => {
       sameSite: "None", // Ensure this matches your set-cookie settings
       // expires: new Date(0),
     })
-    .clearCookie("danav")
+    .clearCookie("danav", {
+      secure: process.env.NODE_ENV === "production",
+    })
     .json({
       message: "Cookie cleared successfully",
     });
