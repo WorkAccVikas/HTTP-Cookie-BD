@@ -39,7 +39,7 @@ mongoose
 app.post("/set-cookie", (req, res) => {
   return res
     .status(200)
-    .cookie("HT1", "HTTP cookie with lax", {
+    .cookie("HT1", "HTTP cookie with non", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "None", // Set this to 'None' if using cross-site cookies
